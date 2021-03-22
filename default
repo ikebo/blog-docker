@@ -44,12 +44,12 @@ server {
     		rewrite ^(.*)$ /index.php$1 last;
 	}
 	
-	location ~ .*\.(php|php5)?$ {
+	location ~ .*\.(php|php5|php7)?$ {
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
         	include fastcgi.conf;
         	fastcgi_pass  unix:/run/php/php7.0-fpm.sock;
 		fastcgi_index index.php;
-    	}
+    }
 
 	location / {
 		# First attempt to serve request as file, then

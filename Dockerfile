@@ -24,8 +24,8 @@ RUN apt-get install -y iputils-ping net-tools telnet vim
 RUN apt-get install -y apt-utils \
     && { \
         echo debconf debconf/frontend select Noninteractive; \
-        echo mysql-community-server mysql-community-server/data-dir \
-            select ''; \
+        #echo mysql-community-server mysql-community-server/data-dir \
+        #    select ''; \
         echo mysql-community-server mysql-community-server/root-pass \
             password 'mytest'; \
         echo mysql-community-server mysql-community-server/re-root-pass \
@@ -35,11 +35,16 @@ RUN apt-get install -y apt-utils \
     } | debconf-set-selections \ 
     && apt-get install -y mysql-server 
 
-# 安装php
+# 安装php php-fpm 在 /user/sbin 中
 RUN apt-get install php -y
 RUN apt-get install -y php-bcmath php-bz2 php-intl php-gd php-mbstring php-mcrypt php-mysql php-zip
+RUN apt-get install -y php7.0-curl
 RUN apt-get install -y libapache2-mod-php
 RUN apt-get install -y php7.0-fpm
+
+# fpm-conf & ini set error log loc
+ADD ./php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
+ADD ./php.ini /etc/php/7.0/fpm/php.ini
 
 # 安装supervisor
 RUN apt-get install -y supervisor
@@ -51,17 +56,8 @@ ADD ./blog.conf /root/blog.conf
 ADD ./start.sh /root/start.sh
 # 去掉代理，以免影响容器访问网络
 ENV http_proxy=
-
-
-# 加载代码 & 配置文件 & 启动脚本
-#Add ./requirements.txt /board/
-
-# 启动
-#RUN virtualenv -p /usr/bin/python3.7 /board/venv
-#RUN /bin/bash -c "cd /board && source venv/bin/activate && pip install -r requirements.txt"
+ENV pwd=mytest
 
 EXPOSE 80
-#EXPOSE 5000
 
 CMD cp /root/blog.conf /etc/supervisor/conf.d/ && supervisord -n -c /etc/supervisor/supervisord.conf
-#CMD nginx -c /etc/nginx/nginx.conf
