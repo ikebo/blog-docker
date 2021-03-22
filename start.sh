@@ -1,5 +1,7 @@
 #!/bin/bash
 service php7.0-fpm start
+
+chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 /etc/init.d/mysql start
 
 #mysqldump -u root -p --all-databases > alldb.sql
