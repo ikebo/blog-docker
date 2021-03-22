@@ -51,7 +51,7 @@ RUN apt-get install -y supervisor
 
 # 安装nginx
 RUN apt-get install -y nginx
-ADD ./default /etc/nginx/sites-enabled/default
+#ADD ./default /etc/nginx/sites-enabled/default
 ADD ./blog.conf /root/blog.conf
 ADD ./start.sh /root/start.sh
 # 去掉代理，以免影响容器访问网络
