@@ -57,6 +57,7 @@ ADD ./start.sh /root/start.sh
 # 去掉代理，以免影响容器访问网络
 ENV http_proxy=
 ENV pwd=mytest
+RUN apt-get install -y lsof
 
 EXPOSE 80
 

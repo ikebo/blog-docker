@@ -115,7 +115,7 @@ server {
 	# Don't use them in a production server!
 	#
 	# include snippets/snakeoil.conf;
-    rewrite ^(.*) https://$host$1 permanent;
+    #rewrite ^(.*) https://$host$1 permanent;
 	
     root /var/www/html;
 
