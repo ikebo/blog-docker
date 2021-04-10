@@ -39,6 +39,7 @@ RUN apt-get install -y apt-utils \
 RUN apt-get install php -y
 RUN apt-get install -y php-bcmath php-bz2 php-intl php-gd php-mbstring php-mcrypt php-mysql php-zip
 RUN apt-get install -y php7.0-curl
+RUN apt-get install -y php7.0-xml
 RUN apt-get install -y libapache2-mod-php
 RUN apt-get install -y php7.0-fpm
 
