@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 ENV CT="210319"
 
-ENV http_proxy=http://172.22.132.118:1087
+ENV http_proxy=http://172.25.120.170:1087
 
 # 支持apt-get https
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates
@@ -42,6 +42,7 @@ RUN apt-get install -y php7.0-curl
 RUN apt-get install -y php7.0-xml
 RUN apt-get install -y libapache2-mod-php
 RUN apt-get install -y php7.0-fpm
+RUN apt-get install -y curl
 
 # fpm-conf & ini set error log loc
 ADD ./php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
