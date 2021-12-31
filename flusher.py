@@ -3,8 +3,8 @@ import time
 import os
 
 def flush():
-    os.system('cd ./src && git add . && git commit -m "backup"')
-    os.system('cd ./src && git push origin blog:blog')
+    out = os.system('cd ./src && ./flush')
+    print(out)
 
 def main():
     while True:
