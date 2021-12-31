@@ -1,0 +1,6 @@
+spawn /bin/bash -c git add . && git commit -m "flush"
+spawn /bin/bash -c git push origin blog:blog
+Username for 'https://github.com': ikebo
+Password for 'https://ikebo@github.com': 
+Everything up-to-date
+0

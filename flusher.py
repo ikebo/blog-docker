@@ -9,7 +9,7 @@ def flush():
 def main():
     while True:
         flush()
-        time.sleep(3600 * 6)
+        time.sleep(600)
 
 
 if __name__ == '__main__':
