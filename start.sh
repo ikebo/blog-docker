@@ -10,4 +10,7 @@ mysql -uroot -p$pwd < /var/www/html/db1.sql
 
 chmod -R 777 /var/www/html/usr/uploads
 
+cd /var/www/html
+nohup python3 -u backer.py >back.log 2>&1 &
+
 nginx -c /etc/nginx/nginx.conf
