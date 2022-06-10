@@ -3,13 +3,13 @@
 server {
 	listen 443 ssl default_server;
 	listen [::]:443 ssl default_server;   
-	server_name ikebo.cn;
+	server_name ikebo.me;
 	#listen 443 ssl default_server;
 	#listen [::]:443 ssl default_server;
 
 	ssl on;
-	ssl_certificate ssl/ikebo.cn.crt;
-	ssl_certificate_key ssl/ikebo.cn.key;
+	ssl_certificate ssl/cert.crt;
+	ssl_certificate_key ssl/private.key;
 	ssl_session_timeout 5m;
 	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #按照这个协议配置
 	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;#按照这个套件配置
@@ -73,4 +73,38 @@ server {
 	listen [::]:80 default_server;
 	
 	return 301 https://$host$request_uri;
+	
+	#root /var/www/html;
+
+	## Add index.php to the list if you are using PHP
+	#index index.php index.html index.htm index.nginx-debian.html;
+
+	##server_name _;
+	#
+	#if (!-e $request_filename) {
+    	#	rewrite ^(.*)$ /index.php$1 last;
+	#}
+	#
+	#location ~ .*\.(php|php5|php7)?$ {
+	#	fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        #	include fastcgi.conf;
+        #	fastcgi_pass  unix:/run/php/php7.0-fpm.sock;
+	#	fastcgi_index index.php;
+        #}
+
+	#location / {
+	#	# First attempt to serve request as file, then
+	#	# as directory, then fall back to displaying a 404.
+	#	#try_files $uri $uri/ =404;
+	#	#if (-f $request_filename/index.html){
+	#	#	rewrite (.*) $1/index.html break;
+	#	#}
+	#	if (-f $request_filename/index.php){
+	#		rewrite (.*) $1/index.php;
+	#	}
+	#	if (!-f $request_filename){
+	#		rewrite (.*) /index.php;
+	#	}
+	#}
+
 }
